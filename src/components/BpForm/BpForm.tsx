@@ -18,15 +18,21 @@ export interface IUserStore {
 }
 
 export interface IFormProps {
+  /** Description of fields */
   fields: Array<IBpTextFieldProps &
                 IBpRadioGroupProps &
                 IBpCheckboxProps &
                 IBpDatePickerProps & 
                 IBpSelectListProps &
                 IBpFormControlLabelProps>
+  /** Description of prop userStore */
   userStore?: IUserStore
 }
 
+
+/**
+ * This is from the BpForm
+ */
 @inject('userStore', 'generalStore')
 @observer
 class BpForm extends React.Component<IFormProps> {

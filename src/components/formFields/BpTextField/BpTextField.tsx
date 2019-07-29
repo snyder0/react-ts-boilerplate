@@ -38,27 +38,46 @@ const BpTextField: React.FC<IBpTextFieldProps> = props => {
 
 // Define interface for component props
 export interface IBpTextFieldProps {
+  /** inputKey is needed to build api payload */
   inputKey?: (string | number)
+  /** If true, the input element will be focused during the first mount. */
   autoFocus?: boolean
+  /** If true, the input element will be disabled. */
   disabled?: boolean
+  /** If true, the label will be displayed in an error state. */
   error?: boolean
+  /** 	If true, the input will take up the full width of its container. */
   fullWidth?: boolean
+  /** The id of the input element. Use this prop to make label and helperText accessible for screen readers. */
   id?: (string | undefined)
+  /** The label content. */
   label?: string
+  /** 	If dense or normal, will adjust vertical spacing of this and contained components. */
   margin?: marginEnum
+  /** If true, a textarea element will be rendered instead of an input. */
   multiline?: boolean
+  /** 	Name attribute of the input element. */
   name?: string
+  /** The short hint displayed in the input before the user enters a value. */
   placeholder?: string
+  /** If true, the label is displayed as required and the input element` will be required. */
   required?: boolean
+  /** 	Number of rows to display when multiline option is set to true. */
   rows?: (string | number)
+  /** Used for BpForm to determine field type */
   fieldType: fieldsEnum
+  /** Type of the input element. It should be a valid HTML5 input type. */
   type?: string
-  // Revisit layout type with enum/interface to specify object with specific types for Materail grid
+  /** To determine layout of input */
   layout?: any
+  /** The variant to use. */
   variant?: variantEnum
+  /** The value of the input element, required for a controlled component. */
   value?: string
+  /** If true, the input element will be disabled. */
   onChange?(inputKey: any, event: any): void
 };
+ // Revisit layout type with enum/interface to specify object with specific types for Materail grid
 
 // Set default props
 BpTextField.defaultProps = {
