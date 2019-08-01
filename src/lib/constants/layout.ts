@@ -1,5 +1,19 @@
-export const layoutConfig = Object.freeze({
-  L0: 0,
+type Layout = boolean | "auto" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | undefined
+
+export interface ILayoutSize {
+  xs: Layout
+  sm: Layout
+  md: Layout
+  lg: Layout
+  xl: Layout
+}
+
+export interface ILayoutConfig {
+  L6: ILayoutSize
+  L12: ILayoutSize
+}
+
+export const layoutConfig: ILayoutConfig = Object.freeze({
   L6: {
     xs: 12,
     sm: 6,

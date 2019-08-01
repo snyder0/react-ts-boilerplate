@@ -2,7 +2,19 @@ import React from 'react';
 import Radio from '@material-ui/core/Radio';
 import { colorEnum } from '../../../lib/enums/generalEnums';
 
-const BpRadio: React.FC<IBpRadioProps> = props => {
+export interface IVfxRadioOptions {
+  id?: string
+  color?: colorEnum
+  disabled?: boolean
+  disableRipple?: boolean
+  inputProps?: Object
+  checked?: boolean
+  value: any
+  label: string
+  onChange?(): any
+}
+
+const VfxRadio: React.FC<IVfxRadioOptions> = props => {
   return (
     <Radio
       id={props.id}
@@ -17,17 +29,4 @@ const BpRadio: React.FC<IBpRadioProps> = props => {
   )
 }
 
-export interface IBpRadioProps {
-  id?: string
-  color?: colorEnum
-  disabled?: boolean
-  disableRipple?: boolean
-  inputProps?: Object
-  checked?: boolean
-  value?: any
-  label?: string
-  layout?: any
-  onChange?(): any
-}
-
-export default BpRadio
+export default VfxRadio

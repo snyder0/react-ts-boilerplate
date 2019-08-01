@@ -2,7 +2,18 @@ import React, { ReactElement } from 'react'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { labelPlacementEnum } from '../../../lib/enums/generalEnums';
 
-const BpFormControlLabel: React.FC<IBpFormControlLabelProps> = props => {
+export interface IVfxFormControlLabelOptions {
+  checked?: boolean
+  control?: ReactElement
+  disabled?: boolean
+  label?: string
+  labelPlacement?: labelPlacementEnum
+  name?: string
+  onChange?(): any
+  value?: any
+}
+
+const VfxFormControlLabel: React.FC<IVfxFormControlLabelOptions> = props => {
   return (
     <FormControlLabel
       checked={props.checked}
@@ -19,19 +30,4 @@ const BpFormControlLabel: React.FC<IBpFormControlLabelProps> = props => {
   )
 }
 
-export interface IBpFormControlLabelProps {
-  checked?: boolean
-  control?: ReactElement
-  disabled?: boolean
-  label?: string
-  labelPlacement?: labelPlacementEnum
-  name?: string
-  onChange?(): any
-  value?: any
-}
-
-BpFormControlLabel.defaultProps = {
-  
-}
-
-export default BpFormControlLabel
+export default VfxFormControlLabel

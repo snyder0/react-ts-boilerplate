@@ -1,24 +1,104 @@
 import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../../lib/constants/layout';
+import VfxTextField from '../../../components/formFields/vfxTextField/VfxTextField'
+import VfxSwitch from '../../../components/formFields/vfxSwitch/VfxSwitch'
+import VfxSlider from '../../../components/formFields/vfxSlider/VfxSlider'
+import VfxSelectList from '../../../components/formFields/vfxSelectList/VfxSelectList'
+import VfxRadioGroup from '../../../components/formFields/vfxRadio/VfxRadioGroup'
+import VfxCheckbox from '../../../components/formFields/vfxCheckbox/VfxCheckbox'
+import VfxDatePicker from '../../../components/formFields/vfxDatePicker/VfxDatePicker'
+import { IField } from '../../../components/BpForm/BpForm'
+import { valueLabelDisplayEnum } from '../../../lib/enums/generalEnums';
 
-const loginFormFields = [
-  {
-    inputKey: 'email',
-    label: 'Email',
-    placeholder: 'Enter email',
-    fieldType: fieldsEnum.TEXT,
-    layout: layoutConfig.L12,
-    fullWidth: true
-  },
-  {
-    inputKey: 'password',
-    label: 'Password',
-    placeholder: 'Enter password',
-    fieldType: fieldsEnum.PASSWORD,
-    type: 'password',
-    layout: layoutConfig.L12,
-    fullWidth: true
-  },
+const EMAIL: VfxTextField = new VfxTextField({
+  inputKey: 'email',
+  label: 'Email',
+  placeholder: 'Email Placeholder',
+  fullWidth: true,
+  layout: layoutConfig.L12
+})
+
+const SWITCH: VfxSwitch = new VfxSwitch({
+  inputKey: 'switch',
+  label: 'Switch',
+  layout: layoutConfig.L12
+})
+
+const SLIDER: VfxSlider = new VfxSlider({
+  inputKey: 'slider',
+  label: 'Slider',
+  layout: layoutConfig.L6,
+  valueLabelDisplay: valueLabelDisplayEnum.AUTO
+})
+
+const RADIOGROUP: VfxRadioGroup = new VfxRadioGroup({
+  inputKey: 'radioGroup',
+  layout: layoutConfig.L12,
+  radios: [
+    {
+      label: 'label 1',
+      value: 'val1'
+    },
+    {
+      label: 'label 2',
+      value: 'val2'
+    }
+  ]
+})
+
+const SELECTLIST: VfxSelectList = new VfxSelectList({
+  inputKey: 'select',
+  name: 'Select List',
+  layout: layoutConfig.L6,
+  menuItems: [
+    {
+      name: 'option 1',
+      value: 1
+    },
+    {
+      name: 'option 2',
+      value: 2
+    }
+  ]
+})
+
+const CHECKBOX: VfxCheckbox = new VfxCheckbox({
+  inputKey: 'checkbox',
+  layout: layoutConfig.L6,
+  checkboxes: [
+    {
+      label: 'check 1',
+      value: 1
+    },
+    {
+      label: 'check 2',
+      value: 2
+    }
+  ]
+})
+
+const DATEPICKER: VfxDatePicker = new VfxDatePicker({
+  inputKey: 'date',
+  label: 'Date'
+})
+
+const loginFormFields: IField[] = [
+  EMAIL,
+  SELECTLIST,
+  SLIDER,
+  SWITCH,
+  RADIOGROUP,
+  DATEPICKER,
+  CHECKBOX
+  // {
+  //   inputKey: 'password',
+  //   label: 'Password',
+  //   placeholder: 'Enter password',
+  //   fieldType: fieldsEnum.PASSWORD,
+  //   type: 'password',
+  //   layout: layoutConfig.L12,
+  //   fullWidth: true
+  // },
   // {
   //   inputKey: 'login-switch',
   //   fieldType: fieldsEnum.SWITCH,
