@@ -35,12 +35,16 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(obse
   // Hook into headerStyles defined for component and set to a variable
   const classes = headerStyles();
 
+  const dialogForm = new BpForm({
+    fields: loginFormConfig
+  })
+
   function openDialog() {
     //props.generalStore!._openDialog()
     let data = {
       dialogTitle : 'Login',
       dialogShowCloseButton: true,
-      dialogChildren: <BpForm fields={loginFormConfig}  />,
+      dialogChildren: dialogForm.render(),
       dialogButtons: [
         {
           label: 'Login',
@@ -59,9 +63,11 @@ const BpHeader: React.FC<HeaderProps> = inject('generalStore', 'userStore')(obse
   }
 
   async function _handleLogin () {
-    let storeFormConfig = props.userStore!._getformValues();
-    console.log(storeFormConfig)
-    debugger
+    let payload = dialogForm.getFormValues()
+    console.log(payload)
+    // let storeFormConfig = props.userStore!._getformValues();
+    // console.log(storeFormConfig)
+    // debugger
     // let success = false;
     // let payload:any = {};
     // // storeFormConfig.forEach((field) => {

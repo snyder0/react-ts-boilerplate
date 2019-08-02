@@ -1,14 +1,11 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import bpTextFieldStyles from './bpTextFieldStyles';
 import { marginEnum, variantEnum } from '../../../lib/enums/generalEnums';
-import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { ILayoutSize } from '../../../lib/constants/layout';
 import { IField } from '../../BpForm/BpForm'
 
 export interface IVfxTextFieldOptions {
-  inputKey: string|number
+  inputKey: string | number
   autoFocus?: boolean
   disabled?: boolean
   error?: boolean
@@ -29,44 +26,53 @@ export interface IVfxTextFieldOptions {
   onChange?(inputKey: any, event: any): void
 }
 
-// React functional component
 export default class VfxTextField implements IField {
   constructor(
     options: IVfxTextFieldOptions
   ) {
-    this.options = options;
+    this.options = options
+    this.options.fullWidth = true
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
   }
 
   options: IVfxTextFieldOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
 
-  render () {
-    //const classes = bpTextFieldStyles();
+  updateValue = (
+    event: React.ChangeEvent<
+      HTMLInputElement |
+      HTMLTextAreaElement | 
+      HTMLSelectElement
+     >
+    ) => {
+    this.value = event.target.value
+  }
+
+  render() {
     return (
-      <Grid
-        item 
-        {...this.options.layout}
-      >
-        <TextField
-          key={this.options.inputKey}
-          autoFocus={this.options.autoFocus}
-          disabled={this.options.disabled}
-          error={this.options.error}
-          fullWidth={this.options.fullWidth}
-          id={this.options.id} 
-          label={this.options.label}
-          margin={this.options.margin}
-          multiline={this.options.multiline}
-          name={this.options.name}
-          placeholder={this.options.placeholder}
-          required={this.options.required}
-          rows={this.options.rows}
-          type={this.options.type}
-          // onChange={(event) => props.onChange!(props.inputKey, event)}
-          value={this.options.value}
-          // Look into below 
-          //variant={props.variant}
-          />
-      </Grid>
+      <TextField
+        key={this.options.inputKey}
+        autoFocus={this.options.autoFocus}
+        disabled={this.options.disabled}
+        error={this.options.error}
+        fullWidth={this.options.fullWidth}
+        id={this.options.id}
+        label={this.options.label}
+        margin={this.options.margin}
+        multiline={this.options.multiline}
+        name={this.options.name}
+        placeholder={this.options.placeholder}
+        required={this.options.required}
+        rows={this.options.rows}
+        type={this.options.type}
+        onChange={(event) => this.updateValue(event)}
+        value={this.options.value}
+      // Look into below 
+      //variant={props.variant}
+      />
     )
   }
 }

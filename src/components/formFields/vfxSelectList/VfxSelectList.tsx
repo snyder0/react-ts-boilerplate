@@ -4,7 +4,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import BpFormControl from '../vfxFormControl/VfxFormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Input from '@material-ui/core/Input';
-import Grid from '@material-ui/core/Grid';
 import { variantEnum } from '../../../lib/enums/generalEnums'
 import { IField } from '../../BpForm/BpForm'
 import { ILayoutSize } from '../../../lib/constants/layout';
@@ -18,7 +17,7 @@ export interface IVfxSelectListOptions {
   inputKey: string | number
   autoWidth?: boolean
   open?: boolean
-  value?: any
+  value: any
   variant?: variantEnum
   name: string
   menuItems: Array<IMenuItems>
@@ -34,36 +33,36 @@ export default class VfxSelectList implements IField {
     options: IVfxSelectListOptions
   ) {
     this.options = options;
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
   }
 
   options: IVfxSelectListOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
 
   render() {
     return (
-      <Grid
-        item
-        {...this.options.layout}
-      >
-        <BpFormControl>
-          <InputLabel>{this.options.name}</InputLabel>
-          <Select
-            key={this.options.inputKey}
-            onClose={this.options.onClose}
-            onOpen={this.options.onOpen}
-            //value={selectedValues}
-            multiple={this.options.multiple}
-            displayEmpty
-            input={this.options.multiple ? <Input id="select-multiple" /> : <Input id="select-single" />}
-          //onChange={this.options.multiple ? handleChangeMultiple : handleChange}
-          >
-            {this.options.menuItems.map((item, index) => (
-              <MenuItem value={item.value} key={index}>
-                {item.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </BpFormControl>
-      </Grid>
+      <BpFormControl>
+        <InputLabel>{this.options.name}</InputLabel>
+        <Select
+          key={this.options.inputKey}
+          onClose={this.options.onClose}
+          onOpen={this.options.onOpen}
+          value={this.options.value}
+          multiple={this.options.multiple}
+          displayEmpty
+          input={this.options.multiple ? <Input id="select-multiple" /> : <Input id="select-single" />}
+        //onChange={this.options.multiple ? handleChangeMultiple : handleChange}
+        >
+          {this.options.menuItems.map((item, index) => (
+            <MenuItem value={item.value} key={index}>
+              {item.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </BpFormControl>
     )
   }
 }

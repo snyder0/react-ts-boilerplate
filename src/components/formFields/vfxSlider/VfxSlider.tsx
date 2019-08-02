@@ -1,6 +1,5 @@
 import React, { ElementType } from 'react';
 import Slider from '@material-ui/core/Slider';
-import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { orientationEnum, valueLabelDisplayEnum } from '../../../lib/enums/generalEnums';
 import sliderStyles from './bpSliderStyles';
@@ -30,17 +29,19 @@ export default class VfxSlider implements IField {
   constructor(
     options: IVfxSliderOptions
   ) {
-    this.options = options;
+    this.options = options
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
   }
 
   options: IVfxSliderOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
 
   render() {
     return (
-      <Grid
-        item 
-        {...this.options.layout}
-      >
+      <React.Fragment>
         <Typography gutterBottom>
           {this.options.label}
         </Typography>
@@ -59,7 +60,7 @@ export default class VfxSlider implements IField {
           //value={value}
           valueLabelDisplay={this.options.valueLabelDisplay}
         />
-      </Grid>
+      </React.Fragment>
     )
   }
 }

@@ -1,16 +1,13 @@
-import 'date-fns';
-import React from 'react';
-import DateFnsUtils from '@date-io/date-fns';
-import bpDatePickerStyles from './bpDatePickerStyles';
+import 'date-fns'
+import React from 'react'
+import DateFnsUtils from '@date-io/date-fns'
+import bpDatePickerStyles from './bpDatePickerStyles'
 import {
   MuiPickersUtilsProvider,
   DatePicker,
-} from '@material-ui/pickers';
+} from '@material-ui/pickers'
 import { IField } from '../../BpForm/BpForm'
-
-interface IState {
-  selectedDate: Date | null
-}
+import { ILayoutSize } from '../../../lib/constants/layout'
 
 export interface IVfxDatePickerOptions {
   inputKey: string | number
@@ -22,43 +19,41 @@ export interface IVfxDatePickerOptions {
   onChange?(inputKey: any, event: any): void
 }
 
-export default class VfxDatePicker extends React.Component<{}, IState> implements IField {
+export default class VfxDatePicker implements IField {
   constructor(
     options: IVfxDatePickerOptions
   ) {
-    super({})
     this.options = options;
     this.options.autoOk = false
     this.options.format = 'MM/dd/yyyy'
-
-    this.state = {
-      selectedDate: new Date()
-    }
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
   }
 
   options: IVfxDatePickerOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
 
-    handleDateChange = (date: Date | null) => {
-      this.setState({ selectedDate: date })
-      //props.onChange!(props.inputKey, selected);
-    }
+  handleDateChange = (date: Date | null) => {
+
+    //props.onChange!(props.inputKey, selected);
+  }
 
   render() {
     //const classes = bpDatePickerStyles();
     return (
-      <div >
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <DatePicker
-            key={this.options.inputKey}
-            //className={classes.datepicker}
-            autoOk={this.options.autoOk}
-            label={this.options.label}
-            value={this.state.selectedDate}
-            onChange={this.handleDateChange}
-            format={this.options.format}
-          />
-        </MuiPickersUtilsProvider>
-      </div>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <DatePicker
+          key={this.options.inputKey}
+          //className={classes.datepicker}
+          autoOk={this.options.autoOk}
+          label={this.options.label}
+          value={this.options.value}
+          onChange={this.handleDateChange}
+          format={this.options.format}
+        />
+      </MuiPickersUtilsProvider>
     )
   }
 }

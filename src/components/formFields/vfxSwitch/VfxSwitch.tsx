@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Switch from '@material-ui/core/Switch';
-import Grid from '@material-ui/core/Grid';
 import { colorEnum, sizeEnum } from '../../../lib/enums/generalEnums';
 import BpFormControlLabel from '../vfxFormControlLabel/VfxFormControlLabel';
 import { IField } from '../../BpForm/BpForm'
 import { ILayoutSize } from '../../../lib/constants/layout';
+
+interface IState {
+  checked: boolean
+}
 
 export interface IVfxSwitchOptions {
   label: string
@@ -21,40 +24,53 @@ export interface IVfxSwitchOptions {
   onChange?(inputKey: any, value: any): void
 }
 
-export default class VfxSwitch implements IField {
-  constructor(
-    options: IVfxSwitchOptions
-  ) {
+export default class VfxSwitch extends Component implements IField {
+  constructor(options: IVfxSwitchOptions) {
+    super(options)
     this.options = options
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
+    this.value = this.options.value ? this.options.value : false
+
+    this.state = {
+      checked: this.options.value ? this.options.value : false
+    }
   }
 
   options: IVfxSwitchOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
+
+  // const handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setState({ ...state, [name]: event.target.checked });
+  //   props.onChange!(props.inputKey, state.checked);
+  // }
+
+  updateValue = () => {
+    this.value = !this.value
+    this.setState({checked: this.value})
+  }
 
   render() {
     return (
-      <Grid
-        item
-        {...this.options.layout}
-      >
-        <BpFormControlLabel
-          control={
-            <Switch
-              key={this.options.inputKey}
-              id={this.options.id}
-              color={this.options.color}
-              disabled={this.options.disabled}
-              disableRipple={this.options.disableRipple}
-              inputProps={this.options.inputProps}
-              // Requires state
-              //checked={state.checked}
-              value='checked'
-              size={this.options.size}
-            //onChange={handleChange('checked')}
-            />
-          }
-          label={this.options.label}
-        />
-      </Grid>
+      <BpFormControlLabel
+        control={
+          <Switch
+            key={this.options.inputKey}
+            id={this.options.id}
+            color={this.options.color}
+            disabled={this.options.disabled}
+            disableRipple={this.options.disableRipple}
+            inputProps={this.options.inputProps}
+            checked={this.options.value}
+            value={this.options.value}
+            size={this.options.size}
+            onChange={() => this.updateValue()}
+          />
+        }
+        label={this.options.label}
+      />
     )
   }
 }

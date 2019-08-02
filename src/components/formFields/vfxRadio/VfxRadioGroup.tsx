@@ -4,9 +4,10 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import BpFormControlLabel from '../vfxFormControlLabel/VfxFormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import { IVfxRadioOptions } from './VfxRadio'
-import { labelPlacementEnum } from '../../../lib/enums/generalEnums';
-import { colorEnum } from '../../../lib/enums/generalEnums';
+import { labelPlacementEnum } from '../../../lib/enums/generalEnums'
+import { colorEnum } from '../../../lib/enums/generalEnums'
 import { IField } from '../../BpForm/BpForm'
+import { ILayoutSize } from '../../../lib/constants/layout'
 
 export interface IVfxRadioGroupOptions {
   inputKey: string | number
@@ -25,9 +26,14 @@ export default class VfxRadioGroup implements IField {
     options: IVfxRadioGroupOptions
   ) {
     this.options = options;
+    this.layout = this.options.layout
+    this.inputKey = this.options.inputKey
   }
 
   options: IVfxRadioGroupOptions
+  layout: ILayoutSize
+  inputKey: string | number
+  value: any
 
   render() {
     return (
@@ -37,7 +43,7 @@ export default class VfxRadioGroup implements IField {
           name={this.options.name}
           value={this.options.value}
           row={this.options.row}
-          //onChange={(event) => this.options.onChange!(this.options.inputKey, event)}
+        //onChange={(event) => this.options.onChange!(this.options.inputKey, event)}
         >
           {this.options.radios.map((radio, index) => (
             <BpFormControlLabel

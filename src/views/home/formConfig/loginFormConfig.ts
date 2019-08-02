@@ -1,4 +1,3 @@
-import { fieldsEnum } from '../../../lib/enums/fieldEnums';
 import { layoutConfig } from '../../../lib/constants/layout';
 import VfxTextField from '../../../components/formFields/vfxTextField/VfxTextField'
 import VfxSwitch from '../../../components/formFields/vfxSwitch/VfxSwitch'
@@ -13,15 +12,22 @@ import { valueLabelDisplayEnum } from '../../../lib/enums/generalEnums';
 const EMAIL: VfxTextField = new VfxTextField({
   inputKey: 'email',
   label: 'Email',
-  placeholder: 'Email Placeholder',
-  fullWidth: true,
+  placeholder: 'Enter Email',
+  layout: layoutConfig.L12
+})
+
+const PASSWORD: VfxTextField = new VfxTextField({
+  inputKey: 'password',
+  label: 'Password',
+  placeholder: 'Enter Password',
   layout: layoutConfig.L12
 })
 
 const SWITCH: VfxSwitch = new VfxSwitch({
   inputKey: 'switch',
   label: 'Switch',
-  layout: layoutConfig.L12
+  layout: layoutConfig.L6,
+  value: true
 })
 
 const SLIDER: VfxSlider = new VfxSlider({
@@ -33,7 +39,7 @@ const SLIDER: VfxSlider = new VfxSlider({
 
 const RADIOGROUP: VfxRadioGroup = new VfxRadioGroup({
   inputKey: 'radioGroup',
-  layout: layoutConfig.L12,
+  layout: layoutConfig.L6,
   radios: [
     {
       label: 'label 1',
@@ -48,6 +54,7 @@ const RADIOGROUP: VfxRadioGroup = new VfxRadioGroup({
 
 const SELECTLIST: VfxSelectList = new VfxSelectList({
   inputKey: 'select',
+  value: '',
   name: 'Select List',
   layout: layoutConfig.L6,
   menuItems: [
@@ -79,116 +86,19 @@ const CHECKBOX: VfxCheckbox = new VfxCheckbox({
 
 const DATEPICKER: VfxDatePicker = new VfxDatePicker({
   inputKey: 'date',
-  label: 'Date'
+  label: 'Date',
+  layout: layoutConfig.L12
 })
 
 const loginFormFields: IField[] = [
   EMAIL,
-  SELECTLIST,
-  SLIDER,
+  PASSWORD,
+  // SELECTLIST,
+  // SLIDER,
   SWITCH,
-  RADIOGROUP,
-  DATEPICKER,
-  CHECKBOX
-  // {
-  //   inputKey: 'password',
-  //   label: 'Password',
-  //   placeholder: 'Enter password',
-  //   fieldType: fieldsEnum.PASSWORD,
-  //   type: 'password',
-  //   layout: layoutConfig.L12,
-  //   fullWidth: true
-  // },
-  // {
-  //   inputKey: 'login-switch',
-  //   fieldType: fieldsEnum.SWITCH,
-  //   layout: layoutConfig.L6,
-  //   switchLabel: 'Switch label',
-  //   checked: true
-  // }
-  // {
-  //   inputKey: 'login-slider',
-  //   fieldType: fieldsEnum.SLIDER,
-  //   layout: layoutConfig.L12,
-  //   valueLabelDisplay: valueLabelDisplayEnum.ON,
-  //   min: 0,
-  //   max: 10,
-  //   sliderLabel: 'Volume',
-  //   defaultValue: 5
-  // }
-  // {
-  //   inputKey: 'login-datepicker',
-  //   fieldType: fieldsEnum.DATE,
-  //   layout: layoutConfig.L12,
-  //   label: 'Select a date',
-  // }
-  // {
-  //   inputKey: 'login-radio',
-  //   name: 'radio test',
-  //   radios: [
-  //     {
-  //       label: 'radio1',
-  //       value: 'radio1'
-  //     },
-  //     {
-  //       label: 'radio2',
-  //       value: 'radio2'
-  //     }
-  //   ],
-  //   fieldType: fieldsEnum.RADIO,
-  //   layout: layoutConfig.L6
-  // },
-  // {
-  //   inputKey: 'login-select',
-  //   fieldType: fieldsEnum.SELECTLIST,
-  //   name: 'Select an Option',
-  //   layout: layoutConfig.L6,
-  //   multiple: false,
-  //   value: '',
-  //   menuItems: [
-  //     {
-  //       name: 'Option 1',
-  //       value: 1
-  //     },
-  //     {
-  //       name: 'Option 2',
-  //       value: 2
-  //     },
-  //     {
-  //       name: 'Option 3',
-  //       value: 3
-  //     }
-  //   ]
-  // },
-  // {
-  //   fieldType: fieldsEnum.CHECKBOX,
-  //   inputKey: 'login-checkbox',
-  //   layout: layoutConfig.L6,
-  //   label: 'Checkbox 1',
-  //   row: true,
-  //   checkboxes: [
-  //     {
-  //       label: 'test1',
-  //       value: 'test1'
-  //     },
-  //     {
-  //       label: 'test2',
-  //       value: 'test2'
-  //     },
-  //     {
-  //       label: 'test3',
-  //       value: 'test3'
-  //     },
-  //     {
-  //       label: 'test4',
-  //       value: 'test4'
-  //     },
-  //     {
-  //       label: 'test5',
-  //       value: 'test5'
-  //     }
-  //   ]
-  // }
+  // DATEPICKER,
+  // RADIOGROUP,
+  // CHECKBOX
 ]
 
 export default loginFormFields
